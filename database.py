@@ -140,8 +140,9 @@ async def log_random_event(user_id, name, desc):
 
 async def add_sticker_to_collection(user_id, item, rarity):
     # Заглушка для коллекции стикеров
+    pass  # <--- ОБЯЗАТЕЛЬНО ДОБАВЬ ЭТО СЛОВО С ОТСТУПОМ!
 
-    # Добавь это в конец database.py для совместимости
+# Теперь следующая функция будет работать правильно
 async def update_user_field(user_id, field, value):
     async with aiosqlite.connect("cs2_manager.db") as db:
         await db.execute(f"UPDATE users SET {field} = ? WHERE user_id = ?", (value, user_id))
@@ -155,3 +156,4 @@ async def get_skins(owner_id):
 
 async def add_suggestion(user_id, text):
     pass # Заглушка, чтобы не было ошибки
+
