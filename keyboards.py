@@ -1,4 +1,4 @@
-from aiogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton, KeyboardButton
 from config import TRAINING_TYPES, TACTICS
 
 # Функция для генерации прогресс‑бара
@@ -195,3 +195,4 @@ def back_to_team_kb() -> InlineKeyboardMarkup:  # <--- Добавь Markup (ес
     builder = InlineKeyboardBuilder()
     builder.button(text="⬅️ Назад в меню", callback_data="main_menu")
     return builder.as_markup()
+
