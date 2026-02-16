@@ -191,4 +191,7 @@ def back_to_main_kb() -> InlineKeyboardMarkup:
         [InlineKeyboardButton(text="⬅️ В главное меню", callback_data="main_menu")]
     ])
 
-def back_to_team_kb() -> InlineKeyboard
+def back_to_team_kb() -> InlineKeyboardMarkup:  # <--- Добавь Markup (если пропущено) и обязательно ДВОЕТОЧИЕ
+    builder = InlineKeyboardBuilder()
+    builder.button(text="⬅️ Назад в меню", callback_data="main_menu")
+    return builder.as_markup()
