@@ -17,22 +17,10 @@ def get_progress_bar(value: int, max_value: int = 100, width: int = 10) -> str:
 # Главное меню (ReplyKeyboardMarkup)
 main_menu = ReplyKeyboardMarkup(
     keyboard=[
-        [
-            "👨‍🏫 Моя команда",
-            "📈 Трансферный рынок"
-        ],
-        [
-            "⚔️ Расписание матчей",
-            "🏆 Турниры"
-        ],
-        [
-            "💰 Букмекер",
-            "📊 Статистика"
-        ],
-        [
-            "⚙️ Настройки",
-            "❓ Помощь"
-        ]
+        [KeyboardButton(text='👨‍🏫 Моя команда'), KeyboardButton(text='📈 Трансферный рынок')],
+        [KeyboardButton(text='⚔️ Расписание матчей'), KeyboardButton(text='🏆 Турниры')],
+        [KeyboardButton(text='💰 Букмекер'), KeyboardButton(text='📊 Статистика')],
+        [KeyboardButton(text='⚙️ Настройки'), KeyboardButton(text='❓ Помощь')]
     ],
     resize_keyboard=True,
     input_field_placeholder="Выберите действие..."
@@ -195,4 +183,5 @@ def back_to_team_kb() -> InlineKeyboardMarkup:  # <--- Добавь Markup (ес
     builder = InlineKeyboardBuilder()
     builder.button(text="⬅️ Назад в меню", callback_data="main_menu")
     return builder.as_markup()
+
 
