@@ -1,5 +1,5 @@
 # config.py
-API_TOKEN = "API_TOKEN"
+API_TOKEN = "8558553503:AAH6FdDAx_uqqLFt4hGsseBZ1cPUXSs5A8g"
 DB_PATH = "cs2_arena.db"
 ADMIN_ID = 5056869104 # Ваш Telegram ID
 
@@ -56,5 +56,6 @@ SKINS = [
     ("Red Skin", "Legendary", 20),
     ("Gold Skin", "Exceedingly Rare", 25)
 ]
+
 
 
