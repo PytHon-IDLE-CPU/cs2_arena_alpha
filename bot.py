@@ -23,16 +23,32 @@ async def cmd_start(message: types.Message):
 # ----------------------------
 user_suggestion_waiting = set()
 
-@dp.message()
-async def handle_suggestions(message: types.Message):
-    if message.text == "💡 Предложить идею":
-        await message.answer("Напиши свою идею, я передам её администрации.")
-        user_suggestion_waiting.add(message.from_user.id)
-    elif message.from_user.id in user_suggestion_waiting:
-        await add_suggestion(message.from_user.id, message.text)
-        await bot.send_message(ADMIN_ID, f"Новая идея от {message.from_user.id}: {message.text}")
-        await message.answer("Спасибо! Твоя идея отправлена администрации.")
-        user_suggestion_waiting.remove(message.from_user.id)
+# Обработка нажатия на "Моя Команда"
+@dp.message(F.text == "Моя Команда 👨‍🏫")
+async def cmd_my_team(message: types.Message):
+    await message.answer(
+        "<b>🏠 Управление командой</b>\nЗдесь вы можете настроить состав, тактику и финансы.",
+        reply_markup=my_team_kb()
+    )
+
+# Обработка нажатия на "Трансферный Рынок"
+@dp.message(F.text == "Трансферный Рынок 📈")
+async def cmd_market(message: types.Message):
+    await message.answer(
+        "<b>⚖️ Трансферный рынок</b>\nПокупайте таланты или продавайте своих игроков.",
+        reply_markup=market_kb()
+    )
+
+# Пример обработки Inline-кнопки "Список Игроков"
+@dp.callback_query(F.data == "team_players")
+async def show_players(call: types.CallbackQuery):
+    # Тут должна быть логика получения игроков из БД
+    # Пока для примера:
+    sample_players = [(1, "ShadowStrike"), (2, "Pryanichek")]
+    await call.message.edit_text(
+        "<b>👥 Список ваших игроков:</b>",
+        reply_markup=players_list_kb(sample_players)
+    )
 
 # ----------------------------
 # Открытие кейса
@@ -64,3 +80,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
