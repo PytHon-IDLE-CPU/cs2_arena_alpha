@@ -314,13 +314,18 @@ async def process_training(callback: types.CallbackQuery, state: FSMContext):
         message_text = "✅ Улучшена тактика!"
     else:  # restore_morale
         updates["morale"] = "+10"
-        message_text = "✅ Мораль восстановлена!"
-        @dp.callback_query(F.data == "start_match")
+# ... тут заканчивается предыдущая функция
+    message_text = "✅ Мораль восстановлена!"
+    # Убедись, что здесь нет лишних открытых блоков
+
+# Эти две строки должны быть ПРИЖАТЫ К ЛЕВОМУ КРАЮ
+@dp.callback_query(F.data == "start_match")
 async def start_match_simulation(callback: types.CallbackQuery, state: FSMContext):
     """
-    Начинает симуляцию матча: проверяет количество игроков, предлагает выбрать тактику.
+    Начинает симуляцию матча...
     """
     user_id = callback.from_user.id
+    # ... дальше остальной код
     players = await database.get_team_players(user_id)
 
     if len(players) < 5:
@@ -793,4 +798,5 @@ async def main():
         await main()  # рекурсивный перезапуск при ошибке
 
 if __name__ == "__main__":
+
     asyncio.run(main())
