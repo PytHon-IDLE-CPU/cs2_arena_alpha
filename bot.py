@@ -670,6 +670,7 @@ async def open_case(callback: types.CallbackQuery, state: FSMContext):
         f"🎉 Вам выпал **{rarity}** игрок:\n"
         f"**{nickname}** ({position})\n"
         f"Стрельба: {aim} | Реакция: {reaction} | Тактика: {tactics}\n\n"
+    )
         # Завершение хендлера открытия кейса
 @dp.callback_query(F.data == "open_case")
 async def open_case(callback: types.CallbackQuery, state: FSMContext):
@@ -800,3 +801,4 @@ async def main():
 if __name__ == "__main__":
 
     asyncio.run(main())
+
