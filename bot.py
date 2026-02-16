@@ -3,12 +3,12 @@ import asyncio
 import random
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
-from config import API_TOKEN, ADMIN_ID, CASE_COST, SKINS
+from config import BOT_TOKEN, ADMIN_ID, CASE_COST, SKINS
 from database import init_db, get_user, update_user_field, add_skin, add_suggestion, get_skins
 from keyboards import main_menu_kb, open_case_kb
 from game_logic import restore_energy_loop, simulate_match
 
-bot = Bot(token=API_TOKEN)
+Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 # ----------------------------
@@ -64,3 +64,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
