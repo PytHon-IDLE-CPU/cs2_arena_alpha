@@ -4,7 +4,7 @@ import random
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 from config import BOT_TOKEN, ADMIN_ID, CASE_COST, SKINS
-from database import init_db, get_user, update_user_field, add_skin, add_suggestion, get_skins
+from database import init_db, get_user, update_user_balance, add_player, get_team_players
 from keyboards import main_menu_kb, open_case_kb
 from game_logic import restore_energy_loop, simulate_match
 
@@ -45,13 +45,13 @@ async def open_case(call: types.CallbackQuery):
     if coins < CASE_COST:
         await call.message.answer("Недостаточно монет для открытия кейса!")
         return
-    await update_user_field(user_id, "coins", coins - CASE_COST)
+    await update_user_balance(user_id, "coins", coins - CASE_COST)
     await call.message.edit_text("📦 Распаковка...")
     await asyncio.sleep(1)
     await call.message.edit_text("⏳ Крутим барабан...")
     await asyncio.sleep(1)
     skin = random.choice(SKINS)
-    await add_skin(user_id, skin[0], skin[1], skin[2])
+    await add_player(user_id, skin[0], skin[1], skin[2])
     await call.message.edit_text(f"✨ Выпал {skin[0]} ({skin[1]})! +{skin[2]} к Aim!")
 
 # ----------------------------
@@ -64,4 +64,5 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 
